@@ -31,10 +31,12 @@ end
 
 test = Board.new()
 look = Display.new(test)
+king = test.rows[0][4] 
+p king.moves
 
-a = false 
-while a != true
-    look.render
-    # look.cursor.get_input
-    p look.cursor.cursor_pos
-end 
+# a = false 
+# while a != true
+#     look.render
+#     # look.cursor.get_input
+#     p look.cursor.cursor_pos
+# end 

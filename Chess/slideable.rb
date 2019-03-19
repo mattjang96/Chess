@@ -11,10 +11,10 @@ module Slideable
         DIAGONAL_DIRS
     end
 
-    def moves(start)
+    def moves
         possible = []
         move_dirs.each do |dir|
-            possible += grow_moves(start, dir)
+            possible += grow_moves(@pos, dir)
         end 
         possible 
     end 
@@ -23,11 +23,12 @@ module Slideable
     def grow_moves(start, diff)
         results = []
         x, y = start[0], start[1]
+        x, y = x + diff[0], y + diff[1]
         until !(0..7).include?(x) || !(0..7).include?(y)
+            results << [x,y]
             x, y = x + diff[0], y + diff[1]
-            result << [x,y]
         end 
-        result 
+        results
     end
 
 end
