@@ -1,4 +1,5 @@
 require_relative "piece"
+# require_relative "display" 
 
 class Board
     BACK_PIECES = [Rook, Knight, Bishop, King, Queen, Bishop, Knight, Rook]
@@ -13,8 +14,12 @@ class Board
     end
 
     def move_piece(start_pos, end_pos)  
-
+        # Display.render
     end 
+
+    def valid_pos?(pos)
+        (0..7).include?(pos[0]) && (0..7).include?(pos[1])
+    end
 
     private
 

@@ -37,6 +37,7 @@ class Cursor
   def initialize(cursor_pos, board)
     @cursor_pos = cursor_pos
     @board = board
+    @selected = false
   end
 
   def get_input
@@ -77,21 +78,27 @@ class Cursor
 
   def handle_key(key)
     case key
-    when :return || :space
+    when :return, :space
+        toggle_selected
         @cursor_pos
-    when :left || :right || :up || :down
-        updates_pos(MOVES[key])
+    when :left, :right, :up, :down
+        update_pos(MOVES[key])
         nil
     when :ctrl_c
-        Process.exit
+        Process.exit(0)
     end
   end
 
   def update_pos(diff)
     x, y = @cursor_pos
-    x += MOVES[diff][0]
-    y += MOVES[diff][1]
-    @cursor_pos = x, y
+    x += diff[0]
+    y += diff[1]
+    @cursor_pos = [x, y] if @board.valid_pos?([x,y])
+  end
+
+  def toggle_selected
+    @selected = !@selected
   end
 
 end
+
