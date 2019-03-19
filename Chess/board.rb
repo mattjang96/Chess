@@ -1,14 +1,9 @@
-require_relative "bishop"
-require_relative "king"
-require_relative "queen"
-require_relative "rook"
-require_relative "pawn"
-require_relative "knight"
-require_relative "nullpiece"
 require_relative "piece"
 
 class Board
     BACK_PIECES = [Rook, Knight, Bishop, King, Queen, Bishop, Knight, Rook]
+
+    attr_accessor :rows
 
     def initialize()
         @rows = Array.new(8) {Array.new(8, nil)}
@@ -52,3 +47,4 @@ class Board
 end
 
 test = Board.new()
+p test.rows
