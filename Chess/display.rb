@@ -31,9 +31,13 @@ end
 
 test = Board.new()
 look = Display.new(test)
-king = test.rows[0][4] 
-p king.moves
+pawn = test[[1,1]]
+p knight.moves
+test[[2,2]] = Pawn.new(:white, test, [2,2])
+p knight.moves
 
+
+# # to test cursor
 # a = false 
 # while a != true
 #     look.render

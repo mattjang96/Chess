@@ -24,11 +24,22 @@ module Slideable
         results = []
         x, y = start[0], start[1]
         x, y = x + diff[0], y + diff[1]
-        until !(0..7).include?(x) || !(0..7).include?(y)
+        until !(0..7).include?(x) || !(0..7).include?(y) || something_there?([x,y])
             results << [x,y]
+            break if @board[[x,y]].color != self.color
             x, y = x + diff[0], y + diff[1]
         end 
         results
+    end
+
+    def something_there?(pos)
+        if @board[pos].class == NullPiece # empty space
+            return false
+        elsif @board[pos].color != self.color
+            return false
+        else 
+            return true
+        end 
     end
 
 end

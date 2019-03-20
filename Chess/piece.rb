@@ -66,11 +66,34 @@ class Knight < Piece
 end 
 
 class Pawn < Piece
-    attr_accessor :symbol
+    attr_accessor :symbol, :color
     def initialize(color, board, pos)
         super 
         @symbol = (@color == :white) ? " \u2659 " : " \u265F "
     end 
+
+    def moves
+        x, y = @pos
+        if first_move? 
+            result = [[x+1, y], [x+2, y]]
+        else
+            result = [[x+1, y]]
+        end
+    end
+
+    def first_move?
+        (@pos[0] == 1 && @color == :white) || (@pos[0] == 6 && @color == :black)
+    end
+
+    def something_there?(pos)
+        if @board[pos].class == NullPiece # empty space
+            return false
+        elsif @board[pos].color != self.color
+            return false
+        else 
+            return true
+        end 
+    end
 
 end 
 

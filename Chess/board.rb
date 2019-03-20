@@ -13,6 +13,32 @@ class Board
         populate_null
     end
 
+    def [](pos)
+        x, y = pos
+        @rows[x][y] 
+    end
+
+    def []=(pos, piece)
+        x, y = pos
+        @rows[x][y] = piece
+    end
+
+    def add_piece(piece, pos)
+        self[pos] = piece
+    end
+
+    def find_king(color)
+        var = []
+        @rows.each_with_index do |subarr, i|
+            @rows.each_with_index do |piece, j|
+                var[0], var[1] = i, j if piece.class == King && piece.color == color
+            end
+        end
+        var
+    end
+
+    
+
     def move_piece(start_pos, end_pos)  
         # Display.render
     end 

@@ -18,7 +18,19 @@ module Stepable
             y = @pos[1] + dir[1]
             possible << [x,y]
         end 
-        possible
+        possible.select! {|ele| ( (0..7).include?(ele[0]) ) && ( (0..7).include?(ele[1]) )}
+        possible.select! {|ele| !something_there?(ele) }
     end 
+
+    private
+    def something_there?(pos)
+        if @board[pos].class == NullPiece # empty space
+            return false
+        elsif @board[pos].color != self.color
+            return false
+        else 
+            return true
+        end 
+    end
 
 end
